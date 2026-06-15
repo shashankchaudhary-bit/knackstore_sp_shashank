@@ -18,11 +18,19 @@ jobs:
 
       - name: Install Frontend Dependencies
         working-directory: frontend
-        run: npm install          # ← use install not ci
+        run: npm install
 
       - name: Build Frontend
         working-directory: frontend
         run: npm run build
+
+      # ← Add this debug step to see what was built
+      - name: Show Build Output
+        run: |
+          echo "=== Root dist folder ==="
+          ls -la frontend/dist/ || echo "No dist folder found"
+          echo "=== Full tree ==="
+          find frontend/dist -type d || echo "No dist folder found"
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
