@@ -14,7 +14,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'            # ← Change 18 to 20
 
       - name: Install Frontend Dependencies
         working-directory: frontend
@@ -31,3 +31,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HACKATHON_7B9F7 }}
           channelId: live
           projectId: hackathon-7b9f7
+          entryPoint: ./frontend
