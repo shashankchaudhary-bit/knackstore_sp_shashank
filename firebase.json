@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "frontend/dist/electronics-store-ui/browser",
+    "public": "frontend/dist/electronics-store-ui",
     "ignore": [
       "firebase.json",
       "**/.*",
