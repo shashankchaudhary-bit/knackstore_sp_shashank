@@ -31,4 +31,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HACKATHON_7B9F7 }}
           channelId: live
           projectId: hackathon-7b9f7
-          entryPoint: ./frontend
+          #entryPoint: ./frontend - removing since entry is at root
