@@ -24,13 +24,12 @@ jobs:
         working-directory: frontend
         run: npm run build
 
-      # ← Add this debug step to see what was built
-      - name: Show Build Output
+      - name: Verify Build Output        # ← Fails loudly if build didn't work
         run: |
-          echo "=== Root dist folder ==="
-          ls -la frontend/dist/ || echo "No dist folder found"
-          echo "=== Full tree ==="
-          find frontend/dist -type d || echo "No dist folder found"
+          echo "=== Checking dist ===" 
+          ls -la frontend/dist/ || (echo "BUILD FAILED - no dist folder" && exit 1)
+          ls -la frontend/dist/electronics-store-ui/ || (echo "Wrong project name in dist" && exit 1)
+          find frontend/dist -type d
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
