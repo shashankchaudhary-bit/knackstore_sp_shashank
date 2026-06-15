@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: knackstore-backend-qa
+    runtime: docker
+    repo: https://github.com/shashankchaudhary-bit/knackstore_sp_shashank
+    branch: qa
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    envVars:
+      - key: SERVER_PORT
+        value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: qa
+      - key: APP_JWT_SECRET
+        value: knack-electronics-store-jwt-secret-key-2024-hackathon-very-long-secret
+      - key: APP_JWT_EXPIRATION
+        value: 86400000
+      - key: APP_CORS_ALLOWED_ORIGINS
+        value: https://hackathon-7b9f7.web.app
