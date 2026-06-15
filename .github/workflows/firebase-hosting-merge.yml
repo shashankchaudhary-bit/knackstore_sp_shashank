@@ -14,7 +14,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'            # ← Change 18 to 20
+          node-version: '20'
 
       - name: Install Frontend Dependencies
         working-directory: frontend
@@ -24,6 +24,14 @@ jobs:
         working-directory: frontend
         run: npm run build
 
+      # ← Add this debug step to see what was built
+      - name: Show Build Output
+        run: |
+          echo "=== Root dist folder ==="
+          ls -la frontend/dist/ || echo "No dist folder found"
+          echo "=== Full tree ==="
+          find frontend/dist -type d || echo "No dist folder found"
+
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -31,4 +39,3 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HACKATHON_7B9F7 }}
           channelId: live
           projectId: hackathon-7b9f7
-          #entryPoint: ./frontend - removing since entry is at root

@@ -13,7 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci && npm run build
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'              # ← Add Node 20
+
+      - name: Install Dependencies
+        working-directory: frontend       # ← Add working directory
+        run: npm install                  # ← Change npm ci to npm install
+
+      - name: Build Frontend
+        working-directory: frontend       # ← Add working directory
+        run: npm run build                # ← Separate build step
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
