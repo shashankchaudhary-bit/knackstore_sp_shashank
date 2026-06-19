@@ -23,7 +23,7 @@
       <div *ngFor="let cat of categories" class="col-6 col-md-4 col-lg-2">
         <a [routerLink]="['/products']" [queryParams]="{category: cat.code}" class="text-decoration-none">
           <div class="category-card text-center p-3 border rounded shadow-sm h-100">
-            <img [src]="cat.imageUrl" [alt]="cat.name" class="category-img rounded mb-2">
+            <img [src]="cat.imageUrl" [alt]="cat.name" class="category-img rounded mb-2" onerror="this.onerror=null;">
             <p class="mb-0 fw-semibold text-dark small">{{ cat.name }}</p>
           </div>
         </a>
@@ -58,7 +58,6 @@
       <div class="col-6 col-md-3"><div class="p-3">🔒<br><strong>Secure Payment</strong><br><small class="text-muted">100% protected</small></div></div>
       <div class="col-6 col-md-3"><div class="p-3">🔄<br><strong>Easy Returns</strong><br><small class="text-muted">30-day hassle free</small></div></div>
       <div class="col-6 col-md-3"><div class="p-3">💬<br><strong>24/7 Support</strong><br><small class="text-muted">Always here to help</small></div></div>
-        <div class="col-6 col-md-3"><div class="p-3">💬<br><strong>Test test</strong><br><small class="text-muted">Test Component added</small></div></div>
     </div>
   </div>
 </section>
