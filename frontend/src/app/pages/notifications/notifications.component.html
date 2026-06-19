@@ -28,6 +28,15 @@
           <p class="mb-1"><strong>Email:</strong> {{ n.email }}</p>
           <p class="mb-1"><strong>Subscribed:</strong> {{ n.subscribedAt | date:'medium' }}</p>
           <p class="mb-0"><strong>Notified At:</strong> {{ n.notifiedAt ? (n.notifiedAt | date:'medium') : 'Not yet' }}</p>
+
+          <button
+            *ngIf="n.notificationStatus === 'PENDING'"
+            class="btn btn-sm btn-outline-danger mt-3"
+            [disabled]="deletingIds.has(n.id)"
+            (click)="deleteNotification(n)">
+            <span *ngIf="deletingIds.has(n.id)" class="spinner-border spinner-border-sm me-1"></span>
+            Delete
+          </button>
         </div>
       </div>
     </div>

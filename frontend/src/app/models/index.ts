@@ -157,3 +157,8 @@ export interface FetchAllNotificationsResponse {
   notifications: StockNotificationItem[];
   totalCount: number;
 }
+
+export interface DeleteNotificationResponse {
+  success: boolean;
+  message: string;
+}

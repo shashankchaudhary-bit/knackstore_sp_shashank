@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { FetchAllNotificationsResponse } from '../../models';
+import { DeleteNotificationResponse, FetchAllNotificationsResponse } from '../../models';
 
 @Injectable({ providedIn: 'root' })
 export class StockNotificationService {
@@ -34,6 +34,14 @@ export class StockNotificationService {
   fetchAllNotifications(email: string): Observable<FetchAllNotificationsResponse> {
     const params = new HttpParams().set('email', email);
     return this.http.get<FetchAllNotificationsResponse>(`${this.apiUrl}/fetch_all_notifications`, { params });
+  }
+
+  deleteNotification(id: number, email: string): Observable<DeleteNotificationResponse> {
+    const params = new HttpParams()
+      .set('id', id)
+      .set('email', email);
+
+    return this.http.get<DeleteNotificationResponse>(`${this.apiUrl}/delete_notification`, { params });
   }
 
   private extractStock(response: unknown): number | null {
