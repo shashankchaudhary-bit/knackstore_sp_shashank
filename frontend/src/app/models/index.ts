@@ -139,3 +139,21 @@ export interface Customer {
   phone: string;
   defaultAddress: Address;
 }
+
+// ---- Notifications ----
+export interface StockNotificationItem {
+  id: number;
+  userId: number;
+  sku: string;
+  email: string;
+  notificationStatus: string;
+  subscribedAt: string;
+  notifiedAt: string | null;
+}
+
+export interface FetchAllNotificationsResponse {
+  success: boolean;
+  message: string;
+  notifications: StockNotificationItem[];
+  totalCount: number;
+}

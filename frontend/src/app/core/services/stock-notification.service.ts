@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { FetchAllNotificationsResponse } from '../../models';
 
 @Injectable({ providedIn: 'root' })
 export class StockNotificationService {
@@ -28,6 +29,12 @@ export class StockNotificationService {
       email,
       subscribeNow: true
     });
+  }
+
+  fetchAllNotifications(): Observable<FetchAllNotificationsResponse> {
+    return this.http.get<FetchAllNotificationsResponse>(`${this.apiUrl}/fetch_all_notifications`).pipe(
+      catchError(() => this.http.post<FetchAllNotificationsResponse>(`${this.apiUrl}/fetch_all_notifications`, {}))
+    );
   }
 
   private extractStock(response: unknown): number | null {
