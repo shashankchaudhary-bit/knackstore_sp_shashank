@@ -19,6 +19,7 @@ import { OrderDetailComponent } from './pages/order-detail/order-detail.componen
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 // Shared
 import { HeaderComponent } from './shared/header/header.component';
@@ -40,6 +41,7 @@ import { ProductCardComponent } from './shared/components/product-card/product-c
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    NotificationsComponent,
     HeaderComponent,
     FooterComponent,
     StarRatingComponent,

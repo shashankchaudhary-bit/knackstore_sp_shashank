@@ -13,6 +13,7 @@ import { OrderDetailComponent } from './pages/order-detail/order-detail.componen
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'account/orders', component: OrderHistoryComponent, canActivate: [authGuard] },
   { path: 'account/orders/:orderCode', component: OrderDetailComponent, canActivate: [authGuard] },
   { path: 'account/profile', component: ProfileComponent, canActivate: [authGuard] },
+  { path: 'account/notifications', component: NotificationsComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '' }
