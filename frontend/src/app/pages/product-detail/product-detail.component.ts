@@ -4,6 +4,7 @@ import { Product, ProductVariant } from '../../models';
 import { ProductService } from '../../core/services/product.service';
 import { CartService } from '../../core/services/cart.service';
 import { AuthService } from '../../core/services/auth.service';
+import { StockNotificationService } from '../../core/services/stock-notification.service';
 import { environment } from '../../../environments/environment';
 
 @Component({ selector: 'app-product-detail', templateUrl: './product-detail.component.html', styleUrls: ['./product-detail.component.css'] })
@@ -20,7 +21,9 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, private router: Router,
     private productService: ProductService,
-    private cartService: CartService, private authService: AuthService
+    private cartService: CartService,
+    private authService: AuthService,
+    private stockNotificationService: StockNotificationService
   ) {}
 
   ngOnInit() {
@@ -59,12 +62,25 @@ export class ProductDetailComponent implements OnInit {
 
       this.notifyMeClicked = true;
       this.notifyMeMessage = 'We will let you know when this is back in stock';
+      this.callNotifyMeApi();
       return;
     }
 
     this.notifyMeClicked = false;
     this.notifyMeMessage = '';
     this.addToCart();
+  }
+
+  private callNotifyMeApi() {
+    if (!this.product || !this.authService.currentUser?.email) return;
+
+    const sku = this.selectedVariant?.sku ?? this.product.code;
+    const email = this.authService.currentUser.email;
+
+    this.stockNotificationService.registerNotifyMe(sku, email).subscribe({
+      next: () => {},
+      error: () => {}
+    });
   }
 
   addToCart() {
