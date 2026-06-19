@@ -31,10 +31,9 @@ export class StockNotificationService {
     });
   }
 
-  fetchAllNotifications(): Observable<FetchAllNotificationsResponse> {
-    return this.http.get<FetchAllNotificationsResponse>(`${this.apiUrl}/fetch_all_notifications`).pipe(
-      catchError(() => this.http.post<FetchAllNotificationsResponse>(`${this.apiUrl}/fetch_all_notifications`, {}))
-    );
+  fetchAllNotifications(email: string): Observable<FetchAllNotificationsResponse> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<FetchAllNotificationsResponse>(`${this.apiUrl}/fetch_all_notifications`, { params });
   }
 
   private extractStock(response: unknown): number | null {

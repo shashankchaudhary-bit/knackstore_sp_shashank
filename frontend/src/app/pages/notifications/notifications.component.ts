@@ -16,7 +16,7 @@ export class NotificationsComponent implements OnInit {
   constructor(private stockNotificationService: StockNotificationService) {}
 
   ngOnInit(): void {
-    this.stockNotificationService.fetchAllNotifications().subscribe({
+    this.stockNotificationService.fetchAllNotifications('demo@knack.com').subscribe({
       next: (res) => {
         this.loading = false;
         this.message = res.message;
